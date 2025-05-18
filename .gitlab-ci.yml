@@ -1,0 +1,51 @@
+stages:
+  - terraform_init
+  - terraform_plan
+  - terraform_apply
+  - terraform_destroy
+
+variables:
+  TF_VAR_environment: "dev"  # Default environment, can be overridden
+
+before_script:
+  - apk add --no-cache curl jq
+  - curl -Lo terraform.zip https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip
+  - unzip terraform.zip
+  - mv terraform /usr/local/bin/
+  - terraform --version
+
+terraform_init:
+  stage: terraform_init
+  script:
+    - cd environments/$TF_VAR_environment
+    - terraform init
+
+terraform_plan:
+  stage: terraform_plan
+  script:
+    - cd environments/$TF_VAR_environment
+    - terraform plan -out=tfplan
+
+terraform_apply:
+  stage: terraform_apply
+  script:
+    - cd environments/$TF_VAR_environment
+    - terraform apply -auto-approve tfplan
+
+terraform_destroy:
+  stage: terraform_destroy
+  script:
+    - cd environments/$TF_VAR_environment
+    - terraform destroy -auto-approve
+
+terraform_fmt:
+  stage: terraform_fmt
+  script:
+    - cd environments/$TF_VAR_environment
+    - terraform fmt -check
+
+terraform_validate:
+  stage: terraform_validate
+  script:
+    - cd environments/$TF_VAR_environment
+    - terraform validate

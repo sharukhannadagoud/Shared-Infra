@@ -1,0 +1,6 @@
+location = "East US"
+resource_group_name = "dev-resource-group"
+vnet_name = "dev-vnet"
+subnet_name = "dev-subnet"
+aks_name = "dev-aks"
+acr_name = "devacr"

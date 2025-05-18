@@ -1,0 +1,12 @@
+environment = "prod"
+location = "East US"
+resource_group_name = "my-prod-resource-group"
+vnet_name = "my-prod-vnet"
+vnet_address_space = "10.0.0.0/16"
+subnet_name = "my-prod-subnet"
+subnet_address_prefix = "10.0.1.0/24"
+aks_name = "my-prod-aks"
+aks_node_count = 3
+aks_vm_size = "Standard_DS2_v2"
+acr_name = "myprodacr"
+key_vault_name = "myprodkeyvault"
