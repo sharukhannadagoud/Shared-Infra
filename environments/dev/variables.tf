@@ -34,3 +34,20 @@ variable "sku" {
   type        = string
   default     = "Standard"
 }
+
+variable "client_id" {
+  description = "The client ID for the service principal"
+  type        = string
+}
+
+variable "client_secret" {
+  description = "The client secret for the service principal"
+  type        = string
+}
+
+# Add your variable declarations here
+
+variable "tenant_id" {
+  description = "The Tenant ID for the Azure subscription"
+  type        = string
+}
